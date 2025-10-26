@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+:root {
+  /* 🎨 Light Mode */
+  --background: oklch(98.5% 0 0);
+  --foreground: #ffffff;
+  --primary: oklch(20.5% 0 0);
+  --secondary: oklch(43.9% 0 0);
+  --accent-gray: oklch(92.8% 0.006 264.531);
+  --accent-green: oklch(72.3% 0.219 149.579);
+  --accent-purple: oklch(62.7% 0.265 303.9);
+  --accent-red: oklch(63.7% 0.237 25.331);
+  --border: oklch(92.2% 0 0);
+}
+
+.dark {
+  /* 🌙 Dark Mode */
+  --background: oklch(20.5% 0 0);
+  --foreground: oklch(26.9% 0 0);
+  --primary: #ffffff;
+  --secondary: oklch(70.8% 0 0);
+  --accent-gray: oklch(27.8% 0.033 256.848);
+  --accent-green: oklch(79.2% 0.209 151.711);
+  --accent-purple: oklch(71.4% 0.203 305.504);
+  --accent-red: oklch(70.4% 0.191 22.216);
+  --border: oklch(37.1% 0 0);
+}
+
+/* Custom utility classes */
+.bg-background {
+  background-color: var(--background);
+}
+
+.bg-foreground {
+  background-color: var(--foreground);
+}
+
+.bg-accent-gray {
+  background-color: var(--accent-gray);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
+
+.text-accent-green {
+  color: var(--accent-green);
+}
+
+.text-accent-purple {
+  color: var(--accent-purple);
+}
+
+.text-accent-red {
+  color: var(--accent-red);
+}
+
+.border-border {
+  border-color: var(--border);
+}
+
+@layer components {
+  .btn {
+    @apply rounded-lg font-medium transition-colors duration-300;
+    background-color: oklch(56% 0.14 182.503);
+    color: #fff;
+  }
+
+  .btn:hover {
+    background-color: oklch(55% 0.118 184.704);
+  }
+
+  .card {
+    @apply rounded-2xl border p-6 transition;
+    background-color: var(--foreground);
+    border-color: var(--border);
+    color: var(--primary);
+  }
+}
+
+/* Prevent Chrome autofill background */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--background) inset !important;
+  box-shadow: 0 0 0px 1000px var(--background) inset !important;
+  -webkit-text-fill-color: var(--primary) !important;
+}
