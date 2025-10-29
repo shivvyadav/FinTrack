@@ -25,8 +25,8 @@ body {
 
 .dark {
   /* 🌙 Dark Mode */
-  --background: oklch(20.5% 0 0);
-  --foreground: oklch(26.9% 0 0);
+  --background: oklch(20% 0 0);
+  --foreground: oklch(19% 0 0);
   --primary: #ffffff;
   --secondary: oklch(70.8% 0 0);
   --accent-gray: oklch(27.8% 0.033 256.848);
@@ -85,7 +85,7 @@ body {
   }
 
   .card {
-    @apply rounded-2xl border p-6 transition;
+    @apply rounded-2xl border p-6 transition-colors duration-300;
     background-color: var(--foreground);
     border-color: var(--border);
     color: var(--primary);
