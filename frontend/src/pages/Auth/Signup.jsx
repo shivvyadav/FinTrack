@@ -57,11 +57,11 @@ const Signup = () => {
   return (
     <AuthLayout title="Sign Up">
       <form onSubmit={handleSubmit} className="space-y-4">
-        {error && <p className="text-sm text-accent-red">{error}</p>}
+        {error && <p className="text-accent-red text-sm">{error}</p>}
 
         {/* Name Field */}
         <div>
-          <label className="block mb-1 text-sm font-medium text-primary">
+          <label className="text-primary mb-1 block text-sm font-medium">
             Name
           </label>
           <input
@@ -70,13 +70,13 @@ const Signup = () => {
             placeholder="Enter your name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2 text-sm border rounded-lg bg-background text-primary border-border focus:ring-1 focus:ring-teal-500 focus:outline-none"
+            className="bg-background text-primary border-border w-full rounded-lg border px-4 py-2 text-sm focus:ring-1 focus:ring-teal-500 focus:outline-none"
           />
         </div>
 
         {/* Email Field */}
         <div>
-          <label className="block mb-1 text-sm font-medium text-primary">
+          <label className="text-primary mb-1 block text-sm font-medium">
             Email
           </label>
           <input
@@ -85,13 +85,13 @@ const Signup = () => {
             placeholder="Enter your email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-2 text-sm border rounded-lg bg-background text-primary border-border focus:ring-1 focus:ring-teal-500 focus:outline-none"
+            className="bg-background text-primary border-border w-full rounded-lg border px-4 py-2 text-sm focus:ring-1 focus:ring-teal-500 focus:outline-none"
           />
         </div>
 
         {/* Password Field */}
         <div className="relative">
-          <label className="block mb-1 text-sm font-medium text-primary">
+          <label className="text-primary mb-1 block text-sm font-medium">
             Password
           </label>
           <input
@@ -100,12 +100,12 @@ const Signup = () => {
             placeholder="Enter your password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full px-4 py-2 text-sm border rounded-lg bg-background text-primary border-border focus:ring-1 focus:ring-teal-500 focus:outline-none"
+            className="bg-background text-primary border-border w-full rounded-lg border px-4 py-2 text-sm focus:ring-1 focus:ring-teal-500 focus:outline-none"
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute text-gray-500 top-9 right-3 hover:text-teal-600"
+            className="absolute top-9 right-3 text-gray-500 hover:text-teal-600"
           >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
@@ -113,7 +113,7 @@ const Signup = () => {
 
         {/* Confirm Password Field */}
         <div className="relative">
-          <label className="block mb-1 text-sm font-medium text-primary">
+          <label className="text-primary mb-1 block text-sm font-medium">
             Confirm Password
           </label>
           <input
@@ -122,12 +122,12 @@ const Signup = () => {
             placeholder="Confirm your password"
             value={formData.confirmPassword}
             onChange={handleChange}
-            className="w-full px-4 py-2 text-sm border rounded-lg bg-background text-primary border-border focus:ring-1 focus:ring-teal-500 focus:outline-none"
+            className="bg-background text-primary border-border w-full rounded-lg border px-4 py-2 text-sm focus:ring-1 focus:ring-teal-500 focus:outline-none"
           />
           <button
             type="button"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="absolute text-gray-500 top-9 right-3 hover:text-teal-600"
+            className="absolute top-9 right-3 text-gray-500 hover:text-teal-600"
           >
             {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
@@ -137,11 +137,11 @@ const Signup = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-2 font-medium text-white btn"
+          className="login-btn w-full py-2 font-medium text-white"
         >
           {loading ? (
             <div className="flex items-center justify-center space-x-2">
-              <span className="w-4 h-4 border-2 border-white rounded-full animate-spin border-t-transparent"></span>
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
               <span>Signing Up...</span>
             </div>
           ) : (
