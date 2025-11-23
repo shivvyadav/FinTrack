@@ -86,7 +86,7 @@ const Login = () => {
         <button
           type="submit"
           disabled={loading}
-          className="btn w-full py-2 font-medium text-white"
+          className="login-btn w-full py-2 font-medium text-white"
         >
           {loading ? (
             <div className="flex items-center justify-center space-x-2">
