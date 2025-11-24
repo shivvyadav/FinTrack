@@ -75,13 +75,13 @@ body {
 
 @layer components {
   .btn {
-    @apply rounded-lg font-medium transition-colors duration-300;
-    background-color: oklch(56% 0.14 182.503);
+    @apply rounded-lg bg-blue-600 font-medium transition-colors duration-300;
+    /* background-color: oklch(56% 0.14 182.503); */
     color: #fff;
   }
 
   .btn:hover {
-    background-color: oklch(55% 0.118 184.704);
+    @apply bg-blue-700;
   }
 
   .card {
@@ -90,6 +90,27 @@ body {
     border-color: var(--border);
     color: var(--primary);
   }
+
+  .card-btn {
+    @apply flex cursor-pointer items-center gap-3 rounded-lg border border-gray-200/50 bg-gray-50 px-4 py-1.5 text-[12px] font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-500;
+  }
+
+  .add-btn {
+    @apply flex cursor-pointer items-center gap-1.5 rounded-lg border border-pink-100 bg-purple-50 px-4 py-2 text-xs font-medium whitespace-nowrap text-purple-600 md:text-sm;
+  }
+
+  .add-btn-fill {
+    @apply bg-blue-200 text-white;
+  }
+
+  .login-btn {
+    @apply rounded-lg font-medium transition-colors duration-300;
+    background-color: oklch(60% 0.14 182.503);
+    color: #fff;
+  }
+  .login-btn:hover {
+    background-color: oklch(56% 0.14 182.503);
+  }
 }
 
 /* Prevent Chrome autofill background */
@@ -97,4 +118,9 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px var(--background) inset !important;
   box-shadow: 0 0 0px 1000px var(--background) inset !important;
   -webkit-text-fill-color: var(--primary) !important;
+}
+
+.recharts-wrapper:focus,
+.recharts-wrapper *:focus {
+  outline: none !important;
 }
