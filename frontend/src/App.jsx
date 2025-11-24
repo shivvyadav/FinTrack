@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import UserProvider from "./context/UserContext";
+import ProtectedRoute from "./context/ProtectedRoute";
 
 import Home from "./pages/Dashboard/Home";
 import Login from "./pages/Auth/Login";
@@ -23,15 +24,27 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: (
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/income",
-          element: <Income />,
+          element: (
+            <ProtectedRoute>
+              <Income />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/expense",
-          element: <Expense />,
+          element: (
+            <ProtectedRoute>
+              <Expense />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/signup",
