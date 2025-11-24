@@ -1,5 +1,5 @@
 import React from "react";
-import { Utensils, TrendingDown, TrendingUp, Trash } from "lucide-react";
+import { TrendingDown, TrendingUp, Trash, Wallet } from "lucide-react";
 
 const TransactionInfoCard = ({
   title,
@@ -8,11 +8,8 @@ const TransactionInfoCard = ({
   amount,
   type,
   hideDeleteBtn,
+  onDelete,
 }) => {
-  const onDelete = () => {
-    console.log("delete");
-  };
-
   const getAmountStyles = () =>
     type === "income"
       ? "text-green-600 bg-green-100/60"
@@ -24,7 +21,7 @@ const TransactionInfoCard = ({
         {icon ? (
           <img src={icon} alt={title} className="size-6" />
         ) : (
-          <Utensils />
+          <img src="/budget.png" alt="Budget" className="size-6" />
         )}
       </div>
       <div className="flex flex-1 items-center justify-between">
@@ -36,10 +33,10 @@ const TransactionInfoCard = ({
         <div className="flex items-center gap-2">
           {!hideDeleteBtn && (
             <button
-              className="group:hover:opacity-100 cursor-pointer text-red-500 opacity-0 transition-opacity hover:text-red-600"
+              className="cursor-pointer text-red-500 opacity-0 transition-opacity group-hover:opacity-100 hover:text-red-600"
               onClick={onDelete}
             >
-              <Trash size={18} />
+              <Trash size={20} />
             </button>
           )}
 
