@@ -7,15 +7,16 @@ const Navbar = ({ activeMenu }) => {
 
   return (
     <>
-      <div className="bg-foreground border-border sticky top-0 z-30 flex gap-5 border-b px-7 py-4 backdrop-blur-[2px] transition-colors duration-300">
+      {/* Fixed Navbar */}
+      <div className="bg-foreground border-border fixed top-0 left-0 z-40 flex w-full gap-5 border-b px-4 py-4 backdrop-blur-[2px] transition-colors duration-300 sm:px-5 md:px-6">
         <button
-          className="text-primary block lg:hidden"
+          className="text-primary block xl:hidden"
           onClick={() => setOpenSideMenu(!openSideMenu)}
         >
           {openSideMenu ? (
-            <X className="h-6 w-6" />
+            <X className="h-6 w-6 md:size-7" />
           ) : (
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6 md:size-7" />
           )}
         </button>
 
@@ -26,7 +27,7 @@ const Navbar = ({ activeMenu }) => {
 
       {/* Mobile Sidebar */}
       {openSideMenu && (
-        <div className="bg-background fixed top-[61px] left-4">
+        <div className="bg-background border-border fixed top-[61px] left-0 z-40 h-[calc(100vh-61px)] w-64 overflow-y-auto border-r p-4 xl:hidden">
           <Sidebar activeMenu={activeMenu} />
         </div>
       )}
