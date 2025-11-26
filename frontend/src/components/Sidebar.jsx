@@ -3,13 +3,13 @@ import ThemeToggle from "./ThemeToggle";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 import {
+  LayoutDashboard,
   HandCoins,
   WalletMinimal,
   LogOut,
-  LayoutDashboard,
 } from "lucide-react";
-import { toast } from "react-hot-toast";
 
 const menuItems = [
   { id: 1, name: "Dashboard", icon: LayoutDashboard, path: "/" },
@@ -44,8 +44,7 @@ const Sidebar = ({ activeMenu }) => {
   };
 
   return (
-    <div className="bg-foreground border-border sticky top-[61px] z-30 h-[calc(100vh-61px)] w-64 border-r p-5 transition-colors duration-300">
-      <ThemeToggle className="" />
+    <div className="bg-foreground border-border fixed top-[61px] left-0 z-30 h-[calc(100vh-61px)] w-64 overflow-y-auto border-r p-5 transition-colors duration-300">
       <div className="mt-3 mb-7 flex flex-col items-center justify-center gap-3">
         {user?.profileImg ? (
           <img
@@ -66,12 +65,13 @@ const Sidebar = ({ activeMenu }) => {
           {user?.name || ""}
         </h5>
       </div>
+
       {menuItems.map((item) => (
         <button
           key={item.id}
           onClick={() => handleClick(item)}
           className={`mb-3 flex w-full items-center gap-4 rounded-lg px-6 py-3 text-[15px] font-medium transition-colors duration-200 ${
-            activeMenu === item.name ? "btn" : "text-primary hover:bg-muted"
+            activeMenu === item.name ? "btn" : "text-primary hover:bg-blue-50 "
           }`}
         >
           <item.icon className="h-6 w-6" />
