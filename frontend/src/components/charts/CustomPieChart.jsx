@@ -1,6 +1,6 @@
 import React from "react";
 import CustomTooltip from "./CustomTooltip";
-import CustonLegend from "./CustonLegend";
+import CustonLegend from "./CustomLegend";
 
 import {
   PieChart,
@@ -19,7 +19,7 @@ const CustomPieChart = ({
   showTextAnchor,
 }) => {
   return (
-    <ResponsiveContainer width="100%" height={380}>
+    <ResponsiveContainer width="100%" height={380} border={0}>
       <PieChart>
         <Pie
           data={data}
@@ -49,7 +49,7 @@ const CustomPieChart = ({
               fill="#666"
               fontSize="14px"
             >
-              {label}){" "}
+              {label}
             </text>
             <text
               x="50%"
@@ -61,7 +61,7 @@ const CustomPieChart = ({
               fontSize="24px"
               fontWeight="semi-bold"
             >
-              {totalAmount})
+              {totalAmount}
             </text>
           </>
         )}
