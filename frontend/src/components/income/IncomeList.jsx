@@ -7,10 +7,13 @@ const IncomeList = ({ transactions, onDelete, onDownload }) => {
   return (
     <div className="card">
       <div className="flex items-center justify-between">
-        <h5 className="text-lg font-medium">Income Source</h5>
-        <button onClick={onDownload} className="card-btn">
-          <Download className="h-4 w-4" />
-        </button>
+        <h5 className="text-lg font-medium">Income List</h5>
+
+        {transactions?.length === 0 ? null : (
+          <button onClick={onDownload} className="card-btn">
+            <Download className="h-4 w-4" />
+          </button>
+        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2">
