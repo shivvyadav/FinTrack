@@ -1,9 +1,11 @@
 const Income = require("../models/Income");
 const Expense = require("../models/Expense");
+const mongoose = require("mongoose");
 
 exports.getDashboardData = async (req, res) => {
   try {
-    const userId = req.user._id || req.user.id;
+    const rawUserId = req.user._id || req.user.id;
+    const userId = new mongoose.Types.ObjectId(rawUserId);
     const sixtyDaysAgo = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000); // 60 days ago
 
     // 🔹 Aggregate total income and expense
