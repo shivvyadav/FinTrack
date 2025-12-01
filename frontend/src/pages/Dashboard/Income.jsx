@@ -89,7 +89,21 @@ const Income = () => {
   };
 
   //handle download income data
-  const handleDownloadIncomeData = async () => {};
+  const handleDownloadIncomeData = async () => {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/api/income/download-income`,
+        { withCredentials: true, responseType: "blob" },
+      );
+      const url = window.URL.createObjectURL(res.data);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "income.xlsx";
+      a.click();
+    } catch (err) {
+      console.log("getUser error:", err?.response?.status, err?.response?.data);
+    }
+  };
 
   React.useEffect(() => {
     fetchIncomeDetails();
