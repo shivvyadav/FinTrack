@@ -75,7 +75,7 @@ body {
 
 @layer components {
   .btn {
-    @apply rounded-lg bg-blue-600 font-medium transition-colors duration-300;
+    @apply font-medium transition-colors duration-300 bg-blue-600 rounded-lg;
     /* background-color: oklch(56% 0.14 182.503); */
     color: #fff;
   }
@@ -85,7 +85,7 @@ body {
   }
 
   .card {
-    @apply rounded-2xl border p-6 transition-colors duration-300;
+    @apply p-6 transition-colors duration-300 border rounded-2xl;
     background-color: var(--foreground);
     border-color: var(--border);
     color: var(--primary);
@@ -100,16 +100,17 @@ body {
   }
 
   .add-btn-fill {
-    @apply bg-blue-200 text-white;
+    @apply text-white bg-blue-200;
   }
 
   .login-btn {
-    @apply rounded-lg font-medium transition-colors duration-300;
-    background-color: oklch(60% 0.14 182.503);
+    @apply font-medium transition-colors duration-300 rounded-lg;
+    /* background-color: oklch(60% 0.14 182.503); */
+    background-color: #248277;
     color: #fff;
   }
   .login-btn:hover {
-    background-color: oklch(56% 0.14 182.503);
+    background-color:#14746f;
   }
 }
 
