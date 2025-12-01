@@ -48,8 +48,8 @@ const AuthLayout = ({ title, children }) => {
       </div>
 
       {/* Right Section - Hero Image */}
-      <div className="bg-foreground border-border hidden w-1/2 items-center justify-center border-l md:flex">
-        {/* Replace this with your image */}
+      <div className="bg-foreground border-border hidden w-1/2 flex-col items-center justify-center border-l md:flex">
+        <img src="./finn.png" alt="FinTrack" className="" />
         <div className="px-10 text-center">
           <div className="bg-background rounded-2xl p-10 shadow-sm">
             <h3 className="text-primary mb-3 text-xl font-semibold">
