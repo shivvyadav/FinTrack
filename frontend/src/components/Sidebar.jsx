@@ -71,7 +71,9 @@ const Sidebar = ({ activeMenu }) => {
           key={item.id}
           onClick={() => handleClick(item)}
           className={`mb-3 flex w-full items-center gap-4 rounded-lg px-6 py-3 text-[15px] font-medium transition-colors duration-200 ${
-            activeMenu === item.name ? "btn" : "text-primary hover:bg-blue-50 "
+            activeMenu === item.name
+              ? "btn"
+              : "text-primary cursor-pointer hover:bg-blue-50 "
           }`}
         >
           <item.icon className="h-6 w-6" />
