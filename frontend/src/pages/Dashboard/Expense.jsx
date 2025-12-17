@@ -8,6 +8,8 @@ import Modal from "../../components/Modal";
 import DeleteAlert from "../../components/DeleteAlert";
 import ExpenseList from "../../components/expense/ExpenseList";
 
+import { clearDashboardCache } from "../../utils/dashboardCache";
+
 const Expense = () => {
   const [openAddExpenseModel, setOpenAddExpenseModel] = useState(false);
   const [expenseData, setExpenseData] = useState([]);
@@ -66,6 +68,7 @@ const Expense = () => {
         setOpenAddExpenseModel(false);
         toast.success("Expense added successfully");
         fetchExpenseDetails();
+        clearDashboardCache();
       }
     } catch (err) {
       console.log("getUser error:", err?.response?.status, err?.response?.data);
@@ -114,7 +117,7 @@ const Expense = () => {
 
   return (
     <DashboardLayout activeMenu="Expense">
-      <div className="mx-auto my-5 pt-15 pr-2 sm:pr-4">
+      <div className="pr-2 mx-auto my-5 pt-15 sm:pr-4">
         <div className="grid grid-cols-1 gap-6">
           <div>
             <ExpenseOverview
