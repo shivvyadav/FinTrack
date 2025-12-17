@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { UserContext } from "../../context/UserContext";
 import DashboardLayout from "../../components/DashboardLayout";
 import InfoCard from "../../components/cards/InfoCard";
 import RecentTransactions from "../../components/dashboard/RecentTransactions";
@@ -11,6 +10,14 @@ import RecentIncomeWithChart from "../../components/dashboard/RecentIncomeWithCh
 import RecentIncome from "../../components/dashboard/RecentIncome";
 import { useNavigate } from "react-router-dom";
 import { HandCoins, WalletMinimal, CreditCard } from "lucide-react";
+import SpinnerCustom from "../../components/SpinnerCustom";
+
+const DASHBOARD_CACHE_KEY = "dashboard_data_v1";
+
+import {
+  getDashboardCache,
+  setDashboardCache,
+} from "../../utils/dashboardCache";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -18,7 +25,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchDashboardData = async () => {
-    if (loading) return;
+    if (dashboardData) return;
     try {
       setLoading(true);
       const res = await axios.get(
@@ -27,9 +34,10 @@ const Home = () => {
       );
       if (res.data?.success) {
         setDashboardData(res.data);
+        setDashboardCache(res.data);
       }
     } catch (err) {
-      console.log("getUser error:", err?.response?.status, err?.response?.data);
+      console.error("Dashboard fetch failed:", err);
       setDashboardData(null);
     } finally {
       setLoading(false);
@@ -40,62 +48,68 @@ const Home = () => {
     fetchDashboardData();
   }, []);
 
+  if (loading || !dashboardData) {
+    return <SpinnerCustom />;
+  }
+
   return (
     <DashboardLayout activeMenu="Dashboard">
-      <div className="pt-20 pr-1 pb-4 sm:pr-4">
+      <div className="pt-20 pb-4 pr-1 sm:pr-4">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           <InfoCard
             icon={<CreditCard />}
             label="Total Balance"
-            value={dashboardData?.totalBalance || 0}
+            value={dashboardData.totalBalance || 0}
             color="bg-blue-400"
           />
           <InfoCard
             icon={<WalletMinimal />}
             label="Total Income"
-            value={dashboardData?.totalIncome || 0}
+            value={dashboardData.totalIncome || 0}
             color="bg-orange-400"
           />
           <InfoCard
             icon={<HandCoins />}
             label="Total Expenses"
-            value={dashboardData?.totalExpense || 0}
+            value={dashboardData.totalExpense || 0}
             color="bg-red-400"
           />
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2">
           <RecentTransactions
-            transactions={dashboardData?.recentTransactions || []}
+            transactions={dashboardData.recentTransactions || []}
           />
+
           <FinanceOverview
-            totalBalance={dashboardData?.totalBalance || 0}
-            totalIncome={dashboardData?.totalIncome || 0}
-            totalExpense={dashboardData?.totalExpense || 0}
+            totalBalance={dashboardData.totalBalance || 0}
+            totalIncome={dashboardData.totalIncome || 0}
+            totalExpense={dashboardData.totalExpense || 0}
           />
-          {dashboardData?.last60daysExpenseTransaction.length > 0 && (
+
+          {dashboardData.last60daysExpenseTransaction?.length > 0 && (
             <ExpenseTransactions
-              transactions={dashboardData?.last60daysExpenseTransaction || []}
+              transactions={dashboardData.last60daysExpenseTransaction}
               onSeeMore={() => navigate("/expense")}
             />
           )}
-          {dashboardData?.last60daysExpenseTransaction.length > 0 && (
+
+          {dashboardData.last60daysExpenseTransaction?.length > 0 && (
             <Last60DaysExpenses
-              data={dashboardData?.last60daysExpenseTransaction || []}
+              data={dashboardData.last60daysExpenseTransaction}
             />
           )}
 
-          {dashboardData?.last60daysIncomeTransaction?.length > 0 && (
+          {dashboardData.last60daysIncomeTransaction?.length > 0 && (
             <RecentIncomeWithChart
-              data={
-                dashboardData?.last60daysIncomeTransaction?.slice(0, 4) || []
-              }
-              totalIncome={dashboardData?.last60daysIncomeBalance || 0}
+              data={dashboardData.last60daysIncomeTransaction.slice(0, 4)}
+              totalIncome={dashboardData.last60daysIncomeBalance || 0}
             />
           )}
-          {dashboardData?.last60daysIncomeTransaction?.length > 0 && (
+
+          {dashboardData.last60daysIncomeTransaction?.length > 0 && (
             <RecentIncome
-              transactions={dashboardData?.last60daysIncomeTransaction || []}
+              transactions={dashboardData.last60daysIncomeTransaction}
               onSeeMore={() => navigate("/income")}
             />
           )}
