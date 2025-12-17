@@ -23,11 +23,6 @@ const UserProvider = ({ children }) => {
           setUser(res.data.user);
         }
       } catch (err) {
-        console.log(
-          "getUser error:",
-          err?.response?.status,
-          err?.response?.data,
-        );
         setUser(null);
       } finally {
         if (isMounted) setLoading(false);
